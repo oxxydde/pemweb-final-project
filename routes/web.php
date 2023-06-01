@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AntriController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,11 +22,11 @@ Route::get('/', function () {
 });
 
 // Login & Register Route
-Route::get('/login', [UserController::class, 'loginInvoke']);
-Route::post('/login', [UserController::class, 'login']);
+Route::get('/login', UserController::class);
+Route::post('/login', [UserController::class, 'login'])->name('login.submit');
 
 // Admin Page Route
-Route::get('/admin', [AdminController::class, 'invoke']);
+Route::get('/admin', AdminController::class);
 
 // Tiket Antri Route
-Route::get('/antri', [AntriController::class, 'invoke']);
+Route::get('/antri', AntriController::class);
