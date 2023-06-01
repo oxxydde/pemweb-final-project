@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
-    public static function invoke() {
+    public function __invoke() {
         return view('sistem.antri', [
             "data" => []
         ]);
