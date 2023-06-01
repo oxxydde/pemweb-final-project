@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('keperluan', function (Blueprint $table) {
+            $table->increments('id_keperluan');
+            $table->string('keperluan');
+        });
+        DB::table('keperluan')->insert(
+            array(
+                array("keperluan" => "Pembuatan NPWP Pribadi Baru"),
+                array("keperluan" => "Pembuatan NPWP Perorangan Baru"),
+                array("keperluan" => "Cetak Kartu NPWP Baru"),
+                array("keperluan" => "Pembayaran Pajak eSPT"),
+                array("keperluan" => "Lainnya"),
+            )
+        );
+
+        Schema::create('antris', function (Blueprint $table) {
+            $table->increments('id_antri');
+            $table->string('nik', 16);
+            $table->string('nama');
+            $table->string('email', 100);
+            $table->string('no_hp', 20);
+            $table->unsignedInteger('id_keperluan');
+            $table->foreign('id_keperluan')
+                ->references('id_keperluan')
+                ->on('keperluan');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('antris');
+        Schema::dropIfExists('keperluan');
+    }
+};
