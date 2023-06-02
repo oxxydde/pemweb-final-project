@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Antri;
 use Illuminate\Http\Request;
 
-class AntriController extends Controller {
-    public function __invoke() {
+class AntriController extends Controller
+{
+    public function __invoke()
+    {
         return view('umum.tiket');
     }
 
-    public function createTiketAntri(Request $request) {
+    public function createTiketAntri(Request $request)
+    {
         $data = $request->all();
         if ($data["keperluan"] === NULL) return;
 
@@ -23,9 +26,18 @@ class AntriController extends Controller {
             "keperluan" => $data["keperluan"]
         ]);
         if ($tiketId !== NULL) {
+            return response(redirect(route('tiket.showTiket')))
+                ->cookie("tiketAnda", $tiketId, 1);
+        }
+    }
+
+    public function showTiketAnda(Request $request) {
+        $tiketId = $request->cookie('tiketAnda');
+        if ($tiketId !== NULL) {
             return view('umum.lihat-tiket-anda', [
                 "idTiket" => $tiketId
             ]);
         }
+        return redirect(route('tiket.formAntri'));
     }
 }
