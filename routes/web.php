@@ -26,7 +26,7 @@ Route::get('/login', UserController::class);
 Route::post('/login', [UserController::class, 'login'])->name('login.submit');
 
 // Admin Page Route
-Route::get('/admin', AdminController::class);
+Route::get('/admin', AdminController::class)->name('admin.dashboard');
 
 // Tiket Antri Route
 Route::get('/antri', AntriController::class)->name('tiket.formAntri');

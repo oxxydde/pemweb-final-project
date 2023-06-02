@@ -10,6 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body class="bg-body-secondary">
+    @isset($result)
+        {{ var_dump($result) }}
+    @endisset
     <div class="container w-50">
         <div class="card ps-4 pe-4">
             <h1 class="display-5">Sistem Login</h1>
