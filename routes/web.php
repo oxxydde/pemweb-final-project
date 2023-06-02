@@ -30,3 +30,4 @@ Route::get('/admin', AdminController::class);
 
 // Tiket Antri Route
 Route::get('/antri', AntriController::class);
+Route::post('/antri', [AntriController::class, 'createTiketAntri'])->name('tiket.submit');

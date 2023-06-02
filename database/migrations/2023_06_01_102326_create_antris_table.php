@@ -26,17 +26,33 @@ return new class extends Migration
             )
         );
 
+        Schema::create('status_antri', function (Blueprint $table) {
+            $table->increments('id_status');
+            $table->string('status');
+        });
+        DB::table('status_antri')->insert(
+            array(
+                array("status" => "Belum Dilayani"),
+                array("status" => "Telah Dilayani"),
+                array("status" => "Dilewati")
+            )
+        );
+
         Schema::create('antris', function (Blueprint $table) {
             $table->increments('id_antri');
             $table->string('nik', 16);
             $table->string('nama');
             $table->string('email', 100);
             $table->string('no_hp', 20);
-            $table->unsignedInteger('id_keperluan');
-            $table->foreign('id_keperluan')
+            $table->unsignedInteger('keperluan');
+            $table->foreign('keperluan')
                 ->references('id_keperluan')
                 ->on('keperluan');
             $table->timestamps();
+            $table->unsignedInteger('status');
+            $table->foreign('status')
+                ->references('id_status')
+                ->on('status_antri');
         });
     }
 

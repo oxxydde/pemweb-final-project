@@ -13,18 +13,30 @@
         <div class="card ps-4 pe-4">
             <h1 class="display-5">Buat Tiket Baru</h1>
             <div class="mb-3 mt-2">
-                <form action="" method="post">
+                <form action="{{ route('tiket.submit') }}" method="post">
                     <label for="" class="form-label ">NIK</label>
-                    <input type="text" class="form-control" name="" id="" placeholder="">
+                    @csrf
+                    <input type="text" class="form-control" name="nik" id="nik" placeholder="">
                     <label for="" class="form-label ">Nama Lengkap</label>
-                    <input type="password" class="form-control" name="" id="" placeholder="">
+                    @csrf
+                    <input type="text" class="form-control" name="nama" id="nama" placeholder="">
                     <label for="" class="form-label ">Email</label>
-                    <input type="email" class="form-control" name="" id="" placeholder="">
+                    @csrf
+                    <input type="email" class="form-control" name="email" id="email" placeholder="">
                     <label for="" class="form-label ">No HP</label>
-                    <input type="tel" class="form-control" name="" id="" placeholder="">
+                    @csrf
+                    <input type="tel" class="form-control" name="no-hp" id="no-hp" placeholder="">
                     <label for="" class="form-label ">Keperluan</label>
-                    <!-- dropdown here -->
-                    <button type="button" class="btn btn-primary mt-3">Buat Tiket Baru</button>
+                    <select class="form-select form-select-lg" name="keperluan" id="keperluan">
+                        <option selected>Select one</option>
+                        <option value="Pembuatan NPWP Pribadi Baru">Pembuatan NPWP Pribadi Baru</option>
+                        <option value="Pembuatan NPWP Perorangan Baru">Pembuatan NPWP Perorangan Baru</option>
+                        <option value="Cetak Kartu NPWP Baru">Cetak Kartu NPWP Baru</option>
+                        <option value="Pembayaran Pajak eSPT">Pembayaran Pajak eSPT</option>
+                        <option value="Lainnya">Lainnya</option>
+        
+                    </select>
+                    <input type="submit" class="btn btn-primary mt-3" value="Buat Tiket Baru"></input>
                 </form>
             </div>
         </div>
