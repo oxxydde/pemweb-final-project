@@ -67,12 +67,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 ms-auto me-auto">
-                    <a href="#">
+                    <a href="{{ route('login.login') }}">
                         <img src="{{ asset('/img/Login Sekarang.png') }}" alt="Login" srcset="" style="width: 100%; margin-bottom: 20px;">
                     </a>
                 </div>
                 <div class="col-md-4 ms-auto me-auto">
-                    <a href="#">
+                    <a href="{{ route('tiket.formAntri') }}">
                         <img src="{{ asset('/img/Antrian Digital.png') }}" alt="Antrian" srcset="" style="width: 100%; margin-bottom: 20px;">
                     </a>
                 </div>

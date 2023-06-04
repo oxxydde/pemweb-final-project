@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 // Login & Register Route
-Route::get('/login', UserController::class);
+Route::get('/login', UserController::class)->name('login.login');
 Route::post('/login', [UserController::class, 'login'])->name('login.submit');
 
 // Admin Page Route
