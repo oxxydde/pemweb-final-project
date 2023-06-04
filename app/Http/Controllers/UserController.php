@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Contracts\View\Factory;
+
 
 class UserController extends Controller {
     public function __invoke(Request $request) {
@@ -39,6 +41,25 @@ class UserController extends Controller {
         ]);
     }
     
-    public function register(Request $request) {
+    public function invokeRegister(Factory $viewFactory)
+    {
+        return $viewFactory->make('user.register', []);
+    }
+
+    public function register(Request $request, Factory $viewFactory)
+    {
+        $data = $request->all();
+
+        $dataRegister = User::createAccount([
+            "username" => $data["username"],
+            "email" => $data["email"],
+            "password" => $data["password"]
+        ]);
+
+        if ($dataRegister !== null) {
+            return $viewFactory->make('user.register', ["message" => "Akun telah berhasil dibuat", "status"=> "OK"]);
+        } else {
+            return $viewFactory->make('user.register', ["message" => "Gagal membuat akun"]);
+        }
     }
 }

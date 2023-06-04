@@ -49,4 +49,15 @@ class User extends Authenticatable
 
         return $result;
     }
+
+    public static function createAccount($data) {
+        $result = $data;
+        if ($result !== NULL) {
+            return DB::table('users')->insert([
+                "username" => $data["username"],
+                "email" => $data["email"],
+                "password" => $data["password"]
+            ]);
+        }
+    }
 }

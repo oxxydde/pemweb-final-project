@@ -24,6 +24,8 @@ Route::get('/', function () {
 // Login & Register Route
 Route::get('/login', UserController::class)->name('login.login');
 Route::post('/login', [UserController::class, 'login'])->name('login.submit');
+Route::get('/register',[UserController::class, 'invokeRegister'])->name('register.page');
+Route::post('/register',[UserController::class, 'Register'])->name('register.submit');
 
 // Admin Page Route
 Route::get('/admin', AdminController::class)->name('admin.dashboard');
@@ -34,3 +36,4 @@ Route::post('/antri', [AntriController::class, 'createTiketAntri'])->name('tiket
 
 // Tiket Anda Route
 Route::get('/tiket_anda', [AntriController::class, 'showTiketAnda'])->name('tiket.showTiket');
+

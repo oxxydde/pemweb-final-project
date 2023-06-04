@@ -16,18 +16,27 @@
     @endisset
     <div class="container w-50">
         <div class="card ps-4 pe-4">
-            <h1 class="header">Sistem Login</h1>
+            <h1 class="header">Sistem Register</h1>
+            @if(isset($message))
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div class="alert">{{ $message }}</div>
+                @if(isset($status) && $status !== null)
+                    <a href="{{ route('login.login') }}">Go to Login</a>
+                @endif
+            </div>
+            @endif
             <div class="mb-3 mt-2">
-                <form action="{{ route('login.submit') }}" method="post">
-                    <label for="" class="form-label ">Username</label>
+                <form action="{{ route('register.submit') }}" method="post">
+                    <label for="" class="form-label ">Username</label>  
                     @csrf
-                    <input type="text" class="form-control mb-2" name="username" id="" placeholder="Username">
+                    <input type="text" class="form-control mb-2" name="username" id="" placeholder="" required>
+                    <label for="" class="form-label ">Email</label>  
+                    @csrf
+                    <input type="email" class="form-control mb-2" name="email" id="" placeholder="" required>
                     <label for="" class="form-label ">Password</label>
                     @csrf
-                    <input type="password" class="form-control mb-3" name="password" id="" placeholder="Password">
-                    <input type="submit" class="btn btn-primary mt-3" value="Log In"></input>
-                    
-                    <p>Sudah memiliki akun? <a href="{{ route('register.page') }}">Register</a></p>
+                    <input type="password" class="form-control mb-3" name="password" id="" placeholder="" required>
+                    <input type="submit" class="btn btn-primary mt-3" value="Register"></input>
                 </form>
                 <p class="text-center mt-5 mb-1 fs-6">Sistem Antrian DJP Pajak</p>
                 <p class="text-center mb-0 fs-6 text-muted">Direktorat Jenderal Pajak © 2023</p>
