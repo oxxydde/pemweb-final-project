@@ -29,10 +29,21 @@ class Antri extends Model {
     }
 
     public static function updateStatusById($id, $status) {
-        $idStatus = DB::table('status_antri')->select('id_status')->where('status', '=', $status)->get()[0]->id_status;
+        // $idStatus = DB::table('status_antri')->select('id_status')->where('status', '=', $status)->get()[0]->id_status;
         
-        DB::table('antris')
-            ->where('id_antri', '=', $id)
-            ->update(['status', $idStatus]);
+        $affected = DB::table('antris')
+                        ->where('id_antri', '=', $id)
+                        ->update(['status' => $status]);
+        
+        return $affected;
+    }
+
+    public static function getAntris() {
+
+        return [
+            "data" => DB::table('antris')->select('*')->get(),
+            "keperluan" => DB::table('keperluan')->select('*')->get(),
+            "status" => DB::table('status_antri')->select('*')->get(),
+        ];
     }
 }

@@ -40,6 +40,10 @@ class UserController extends Controller {
             "result" => "login failed, credential problem"
         ]);
     }
+
+    public function logout() {
+        return redirect('/')->cookie('user', null, -5);
+    }
     
     public function invokeRegister(Factory $viewFactory)
     {

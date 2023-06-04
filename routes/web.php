@@ -21,14 +21,17 @@ Route::get('/', function () {
     return view('umum.landing');
 });
 
-// Login & Register Route
+// Login, Logout, Register Route
 Route::get('/login', UserController::class)->name('login.login');
 Route::post('/login', [UserController::class, 'login'])->name('login.submit');
 Route::get('/register',[UserController::class, 'invokeRegister'])->name('register.page');
-Route::post('/register',[UserController::class, 'Register'])->name('register.submit');
+Route::post('/register',[UserController::class, 'register'])->name('register.submit');
+Route::get('/logout',[UserController::class, 'logout'])->name('admin.logout');
 
 // Admin Page Route
 Route::get('/admin', AdminController::class)->name('admin.dashboard');
+Route::get('/update_antri/{id}/{newStatus}', [AdminController::class, 'update'])->name('admin.update');
+Route::get('/reset_antri', [AdminController::class, 'resetAntri'])->name('admin.resetAntri');
 
 // Tiket Antri Route
 Route::get('/antri', AntriController::class)->name('tiket.formAntri');
