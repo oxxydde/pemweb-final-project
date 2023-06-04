@@ -1,0 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap");
+.header {
+    font-family: "Oswald";
+    font-size: 3rem;
+    font-weight: 300;
+}

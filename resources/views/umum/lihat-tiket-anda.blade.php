@@ -9,7 +9,11 @@
     <title>Tiket Anda</title>
 </head>
 <body>
-    <h5 class="display-5">Tiket Anda</h5>
-    <h2 class="display-2"><b>{{ $idTiket }}</b></h2>
+    <div class="card text-bg-light p-3 mx-auto" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center">Nomor Antrian Anda</h5>
+            <h2 class="card-subtitle text-center"><b>{{ $idTiket }}</b></h2>
+        </div>
+    </div>
 </body>
 </html>

@@ -11,23 +11,23 @@
 <body class="bg-body-secondary">
     <div class="container w-50">
         <div class="card ps-4 pe-4">
-            <h1 class="display-5">Buat Tiket Baru</h1>
+            <h1 class="header">Buat Tiket Baru</h1>
             <div class="mb-3 mt-2">
                 <form action="{{ route('tiket.submit') }}" method="post">
                     <label for="" class="form-label ">NIK</label>
                     @csrf
-                    <input type="text" class="form-control" name="nik" id="nik" placeholder="">
+                    <input type="text" class="form-control mb-2" name="nik" id="nik" placeholder="">
                     <label for="" class="form-label ">Nama Lengkap</label>
                     @csrf
-                    <input type="text" class="form-control" name="nama" id="nama" placeholder="">
+                    <input type="text" class="form-control mb-2" name="nama" id="nama" placeholder="">
                     <label for="" class="form-label ">Email</label>
                     @csrf
-                    <input type="email" class="form-control" name="email" id="email" placeholder="">
+                    <input type="email" class="form-control mb-2" name="email" id="email" placeholder="">
                     <label for="" class="form-label ">No HP</label>
                     @csrf
-                    <input type="tel" class="form-control" name="no-hp" id="no-hp" placeholder="">
+                    <input type="tel" class="form-control mb-2" name="no-hp" id="no-hp" placeholder="">
                     <label for="" class="form-label ">Keperluan</label>
-                    <select class="form-select form-select-lg" name="keperluan" id="keperluan">
+                    <select class="form-select mb-3" name="keperluan" id="keperluan">
                         <option selected>Select one</option>
                         <option value="Pembuatan NPWP Pribadi Baru">Pembuatan NPWP Pribadi Baru</option>
                         <option value="Pembuatan NPWP Perorangan Baru">Pembuatan NPWP Perorangan Baru</option>
