@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Login</title>
+    <title>Daftar Akun</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/app.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
@@ -17,14 +17,37 @@
     <div class="container w-50">
         <div class="card ps-4 pe-4">
             <h1 class="header">Sistem Register</h1>
-            @if(isset($message))
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <div class="alert">{{ $message }}</div>
-                @if(isset($status) && $status !== null)
-                    <a href="{{ route('login.login') }}">Go to Login</a>
-                @endif
+            @isset($status)            
+            <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitleId">Status</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                @if ($status == 1)
+                                    Register berhasil, silakan login
+                                @else
+                                    Register gagal
+                                @endif
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            @endif
+            
+            <script>
+                $(window).on('load', function() {
+                    $('#resultModal').modal('show');
+                });
+            </script>
+            
+            @endisset
             <div class="mb-3 mt-2">
                 <form action="{{ route('register.submit') }}" method="post">
                     <label for="" class="form-label ">Username</label>  

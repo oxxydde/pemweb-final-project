@@ -9,10 +9,31 @@
     <title>Tiket Anda</title>
 </head>
 <body>
-    <div class="card text-bg-light p-3 mx-auto" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title text-center">Nomor Antrian Anda</h5>
-            <h2 class="card-subtitle text-center"><b>{{ $idTiket }}</b></h2>
+    <div class="container w-50">
+        <div class="card ps-4 pe-4">
+            <h1 class="header">Lihat Antrian Anda</h1>
+            <div class="mb-3 mt-2">
+                <form action="{{ route('tiket.showTiket') }}" method="get">
+                    <label for="" class="form-label ">Nomor Tiket</label>
+                    <input type="text" class="form-control mb-2" name="tiketId" id="" placeholder="">
+                    <input type="submit" class="btn btn-primary mt-3" value="Lihat Tiket Anda"></input>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card text-bg-light p-3 mx-auto mt-4" style="width: 18rem;">
+        <div class="card-body align-items-center">
+            @if ($status != null)
+                <h5 class="card-title text-center">Nomor Antrian Anda</h5>
+                <h2 class="card-subtitle text-center"><b>{{ $idTiket }}</b></h2>
+                <h5 class="card-title text-center mt-4">Status Anda</h5>
+                <h2 class="card-subtitle text-center fs-4"><b>{{ $status }}</b></h2>
+            @else
+                <h5 class="card-title text-center">Data Tidak Ditemukan</h5>
+            @endif
+            <a href="{{ route('tiket.formAntri') }}">
+                <button type="button" class="btn btn-lg btn-primary w-100 mt-4">Buat Antrian Baru</button>
+            </a>
         </div>
     </div>
 </body>

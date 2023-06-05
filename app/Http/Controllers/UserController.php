@@ -4,24 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Contracts\View\Factory;
 
 
-class UserController extends Controller {
-    public function __invoke(Request $request) {
+class UserController extends Controller
+{
+    public function __invoke(Request $request)
+    {
         $isUserLogined = $request->cookie('user') != null;
         if (!($isUserLogined)) {
             return view('user.login', [
-                "result" => $request->cookie
+                "result" => $request->cookie,
+                "status" => session()->get('registerStatus')
             ]);
         }
         // Detour to admin dashboard instead if logined
-        return response(redirect(route('admin.dashboard')));
+        return redirect(route('admin.dashboard'));
     }
-    
-    public function login(Request $request) {
+
+    public function login(Request $request)
+    {
         $data = $request->all();
         $result = User::login([
             "username" => $data["username"],
@@ -31,7 +35,7 @@ class UserController extends Controller {
         if ($result != null) {
             if ($result->username == $data["username"] && $result->password == $data["password"]) {
                 // Give Cookie and redirect to Admin Dashboard
-                return response(redirect(route('admin.dashboard')))
+                return redirect(route('admin.dashboard'))
                     ->cookie("user", $result->username, 120);
             }
         }
@@ -41,16 +45,17 @@ class UserController extends Controller {
         ]);
     }
 
-    public function logout() {
+    public function logout()
+    {
         return redirect('/')->cookie('user', null, -5);
     }
-    
-    public function invokeRegister(Factory $viewFactory)
+
+    public function invokeRegister()
     {
-        return $viewFactory->make('user.register', []);
+        return view('user.register');
     }
 
-    public function register(Request $request, Factory $viewFactory)
+    public function register(Request $request)
     {
         $data = $request->all();
 
@@ -59,11 +64,9 @@ class UserController extends Controller {
             "email" => $data["email"],
             "password" => $data["password"]
         ]);
-
-        if ($dataRegister !== null) {
-            return $viewFactory->make('user.register', ["message" => "Akun telah berhasil dibuat", "status"=> "OK"]);
-        } else {
-            return $viewFactory->make('user.register', ["message" => "Gagal membuat akun"]);
-        }
+        return redirect(route('login.login'))
+            ->with(
+                ['registerStatus' => ($dataRegister !== null) ? 1 : 0]
+            );
     }
 }

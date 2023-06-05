@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class Antri extends Model {
     use HasFactory;
@@ -23,6 +22,20 @@ class Antri extends Model {
             ]);
         }
     }
+
+    public static function getStatusAntriById($idAntri) {
+        $antri = DB::table('antris')
+                    ->select(['id_antri', 'status'])
+                    ->where('id_antri', '=', $idAntri)
+                    ->get();
+        if (isset($antri[0])) {
+            return DB::table('status_antri')
+                        ->select('status')
+                        ->where('id_status', '=', $antri[0]->status)
+                        ->get()[0]->status;
+        }
+        return null;
+    }
     
     public static function resetAntri() {
         DB::table('antris')->truncate();
@@ -39,7 +52,6 @@ class Antri extends Model {
     }
 
     public static function getAntris() {
-
         return [
             "data" => DB::table('antris')->select('*')->get(),
             "keperluan" => DB::table('keperluan')->select('*')->get(),

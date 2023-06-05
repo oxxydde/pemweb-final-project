@@ -26,18 +26,16 @@ class AntriController extends Controller
             "keperluan" => $data["keperluan"]
         ]);
         if ($tiketId !== NULL) {
-            return response(redirect(route('tiket.showTiket')))
-                ->cookie("tiketAnda", $tiketId, 1);
+            return redirect(route('tiket.showTiket', ['tiketId' => $tiketId]));
         }
     }
 
     public function showTiketAnda(Request $request) {
-        $tiketId = $request->cookie('tiketAnda');
-        if ($tiketId !== NULL) {
-            return view('umum.lihat-tiket-anda', [
-                "idTiket" => $tiketId
-            ]);
-        }
-        return redirect(route('tiket.formAntri'));
+        $tiketId = $request->get('tiketId');
+        $status = Antri::getStatusAntriById($tiketId);
+        return view('umum.lihat-tiket-anda', [
+            "idTiket" => $tiketId,
+            "status" => $status
+        ]);
     }
 }

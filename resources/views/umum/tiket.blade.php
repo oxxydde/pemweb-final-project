@@ -28,7 +28,6 @@
                     <input type="tel" class="form-control mb-2" name="no-hp" id="no-hp" placeholder="">
                     <label for="" class="form-label ">Keperluan</label>
                     <select class="form-select mb-3" name="keperluan" id="keperluan">
-                        <option selected>Select one</option>
                         <option value="Pembuatan NPWP Pribadi Baru">Pembuatan NPWP Pribadi Baru</option>
                         <option value="Pembuatan NPWP Perorangan Baru">Pembuatan NPWP Perorangan Baru</option>
                         <option value="Cetak Kartu NPWP Baru">Cetak Kartu NPWP Baru</option>
@@ -36,7 +35,12 @@
                         <option value="Lainnya">Lainnya</option>
         
                     </select>
-                    <input type="submit" class="btn btn-primary mt-3" value="Buat Tiket Baru"></input>
+                    <div class="container mt-3 ps-0">
+                        <input type="submit" class="btn btn-primary" value="Buat Tiket Baru"></input>
+                        <a href="{{ route('tiket.showTiket') }}">
+                            <button type="button" class="btn btn-secondary ms-3">Lihat Antrian Anda</button>
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>

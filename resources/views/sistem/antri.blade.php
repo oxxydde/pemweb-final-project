@@ -17,6 +17,7 @@
             style="text-decoration: none">
               <button type="button" class="btn btn-danger mt-lg-4 text-light">Reset</button>
             </a>
+            <button type="button" id="refreshBtn" class="btn btn-secondary mt-lg-4 ms-xxl-4 text-light" onclick="location.reload()">Refresh</button>
             <a href="{{ route('admin.logout') }}" style="text-decoration: none"
             style="text-decoration: none">
               <button type="button" class="btn btn-info mt-lg-4 ms-xxl-4 text-light">Logout</button>
@@ -59,7 +60,7 @@
                           <button type="button" class="btn btn-danger">Lewati</button>
                         </a>
                       </td>
-                      @else
+                    @else
                       <td>
                         <p>Tidak Ada</p>
                       </td>
