@@ -49,7 +49,7 @@
                     <td>{{ $data[$i]->nama }}</td>
                     <td>{{ $data[$i]->email }}</td>
                     <td>{{ $data[$i]->no_hp }}</td>
-                    <td>{{ $keperluan[$data[$i]->keperluan]->keperluan }}</td>
+                    <td>{{ $keperluan[$data[$i]->keperluan - 1]->keperluan }}</td>
                     <td>{{ $status[$data[$i]->status - 1]->status }}</td>
                     @if ($data[$i]->status == 1)
                       <td>
